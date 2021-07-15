@@ -11,7 +11,7 @@ namespace ExercicioEnum.Entities
         public DateTime Moment { get; set; }
         public OrderStatus Status { get; set; }
         public Client Client { get; set; }
-        private List<OrderItem> lista = new();
+        private List<OrderItem> ItemList = new();
 
         public Order()
         {
@@ -26,19 +26,19 @@ namespace ExercicioEnum.Entities
 
         public void AddItem(OrderItem item)
         {
-            lista.Add(item);
+            ItemList.Add(item);
         }
 
         public void RemoveItem(OrderItem item)
         {
-            lista.Remove(item);
+            ItemList.Remove(item);
         }
 
         public double Total()
         {
             double sum = 0;
 
-            foreach (OrderItem item in lista)
+            foreach (OrderItem item in ItemList)
             {
                 sum += item.SubTotal();
             }
@@ -48,14 +48,14 @@ namespace ExercicioEnum.Entities
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.AppendLine();
-            sb.AppendLine("Order moment: " + Moment.ToString("dd/MM/yyyy HH:mm:ss"));
-            sb.AppendLine("Order status: " + Status);
-            sb.AppendLine("Client: " + Client);
+            sb.AppendLine($"Order moment: {Moment.ToString("dd/MM/yyyy HH:mm:ss")}");
+            sb.AppendLine($"Order status: {Status}");
+            sb.AppendLine($"Client: {Client}");
             sb.AppendLine("Order items:");
 
-            foreach (OrderItem item in lista)
+            foreach (OrderItem item in ItemList)
             {
                 sb.AppendLine(item.ToString());
             }
